@@ -24,5 +24,12 @@ namespace Test2.Controllers
             id = id + 3;
             return Request.CreateResponse(HttpStatusCode.OK, new { Id = id });
         }
+
+        [Route("")]
+        [HttpPost]
+        public HttpResponseMessage Postitem()
+        {
+            return Request.CreateResponse(HttpStatusCode.BadRequest,new { Id=99});
+        }
     }
 }
