@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Stathis.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -14,15 +15,21 @@ namespace Test2.Controllers
         [HttpGet]
         public HttpResponseMessage GetAll()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, new {el = 1, el2 = 2 });
+            var customerRepo = new CustomerRepository();
+            return Request.CreateResponse(HttpStatusCode.OK, customerRepo.GetCustomers());
         }
 
         [Route("{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetById(int id)
         {
-            id = id + 3;
-            return Request.CreateResponse(HttpStatusCode.OK, new { Id = id });
+            var customerRepo = new CustomerRepository();
+            var customer = customerRepo.GetById(id);
+            if (customer==null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+                return Request.CreateResponse(HttpStatusCode.OK, customer);      
         }
 
         [Route("")]

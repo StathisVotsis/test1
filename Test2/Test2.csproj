@@ -108,6 +108,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stathis.Model\Stathis.Model.csproj">
+      <Project>{51426146-9210-449c-837c-bc12b1be62a7}</Project>
+      <Name>Stathis.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stathis.Repository\Stathis.Repository.csproj">
+      <Project>{338E15FC-77C7-4570-8C84-31721F0CC816}</Project>
+      <Name>Stathis.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
