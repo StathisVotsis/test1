@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stathis.Model", "Stathis.Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stathis.Repository", "Stathis.Repository\Stathis.Repository.csproj", "{338E15FC-77C7-4570-8C84-31721F0CC816}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{416D5391-A4FD-4066-A484-8CF9C9A210C3}"
+	ProjectSection(SolutionItems) = preProject
+		Data\Votsis.sdf = Data\Votsis.sdf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
