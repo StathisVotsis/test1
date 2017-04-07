@@ -44,7 +44,7 @@ namespace Stathis.Repository
 
             SqlCommand sqlCmd = new SqlCommand();
             sqlCmd.CommandType = CommandType.Text;
-            sqlCmd.CommandText = "Select * from Table;";
+            sqlCmd.CommandText = "Select * from Table ";
             sqlCmd.Connection = myConnection;
             myConnection.Open();
             reader = sqlCmd.ExecuteReader();
