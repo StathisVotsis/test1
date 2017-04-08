@@ -24,12 +24,8 @@ namespace Test2.Controllers
         public HttpResponseMessage GetById(int id)
         {
             var customerRepo = new CustomerRepository();
-            var customer = customerRepo.GetById(id);
-            if (customer==null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-                return Request.CreateResponse(HttpStatusCode.OK, customer);      
+            return Request.CreateResponse(HttpStatusCode.OK, customerRepo.GetById(id));
+
         }
 
         [Route("")]
