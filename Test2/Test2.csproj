@@ -82,10 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Votsis.mdf" />
-    <Content Include="App_Data\Votsis2.mdf" />
-    <Content Include="App_Data\Votsis2_log.ldf">
-      <DependentUpon>Votsis2.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\Votsis_log.ldf">
       <DependentUpon>Votsis.mdf</DependentUpon>
     </Content>

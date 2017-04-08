@@ -6,66 +6,52 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+
 
 namespace Stathis.Repository
 {
     public class CustomerRepository
     {
-        private List<Customer> _customers;
 
-        public CustomerRepository()
-        {
-            _customers = new List<Customer>();
-
-            //var customer1 = new Customer();
-            //customer1.Id = 1;
-            //customer1.FirstName = "Stathis";
-            //customer1.LastName = "Votsis";
-            //customer1.Email = "stathisvotsis@gmail.com";
-            //_customers.Add(customer1);
-
-           // var customer2 = new Customer();
-           // customer2.Id = 2;
-            //customer2.FirstName = "Antonis";
-            //customer2.LastName = "Klimis";
-            //customer2.Email = "antonisklimis@gmail.com";
-            //_customers.Add(customer2);
-
-        }
 
 
         public List <Customer> GetCustomers()
         {
             //return listEmp.First(e => e.ID == id);  
-            _customers = new List<Customer>();
-            SqlDataReader reader = null;
-            SqlConnection myConnection = new SqlConnection();
-            myConnection.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Stathis\Desktop\develop\test1\Test2\App_Data\Votsis2.mdf;Integrated Security=True";
+            var customers = new List<Customer>();
 
-            SqlCommand sqlCmd = new SqlCommand();
-            sqlCmd.CommandType = CommandType.Text;
-            sqlCmd.CommandText = "Select * from Table ";
-            sqlCmd.Connection = myConnection;
-            myConnection.Open();
-            reader = sqlCmd.ExecuteReader();
-            int i = 0;
-            while (reader.Read())
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["db"].ToString()))
             {
-       
-                _customers[i].FirstName = reader.GetValue(1).ToString();
-                _customers[i].LastName = reader.GetValue(2).ToString();
-                i = i + 1;
+                SqlCommand sqlCmd = new SqlCommand();
+                sqlCmd.CommandType = CommandType.Text;
+                sqlCmd.CommandText = "Select * from Table2;";
+                sqlCmd.Connection = connection;
+                connection.Open();
+                using (var reader = sqlCmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+
+                        var customer = new Customer();
+                        customer.Id = Int32.Parse(reader["Id"].ToString());
+                        customer.FirstName = reader["FirstName"].ToString();
+                        customer.Email = reader["Email"].ToString();
+                        customers.Add(customer);
+
+                    }
+                }
 
             }
             
-            myConnection.Close();
-            return _customers;
+            return customers;
         }
 
         public Customer GetById(int Id)
         {
-           
-            return _customers.FirstOrDefault(c=> c.Id==Id);
+
+            return null;
             
         }
     }
